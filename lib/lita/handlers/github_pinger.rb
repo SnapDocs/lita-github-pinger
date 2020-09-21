@@ -95,6 +95,8 @@ module Lita
       end
 
       def act_on_release_comment(body, response)
+        return unless body['comment']['body']&.include?('@')
+
         comment = body['comment']['body']
         engineers_to_ping = []
         if comment.include?("@")
